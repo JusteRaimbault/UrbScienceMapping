@@ -42,21 +42,12 @@ public class Visualization {
 
 		  //normalize graph
 		  int maxWeight = 0;
-		  int c=0;
-		  while(graph.getEdgeIterator().hasNext()&&c<nEdges){
-			  Edge e = graph.getEdgeIterator().next();
-			  maxWeight = Math.max(((Integer)e.getAttribute("weight")).intValue(),maxWeight);
-			  c++;
-		 }
+		  for(Edge e:graph.getEdgeSet()){maxWeight = Math.max(((Integer)e.getAttribute("weight")).intValue(),maxWeight);}
+		  
 
 		  System.out.println("Max weight : "+maxWeight);
 
-		  c=0;
-		  while(graph.getEdgeIterator().hasNext()&&c<nEdges){
-			  Edge e = graph.getEdgeIterator().next();
-			  e.setAttribute("weight", new Double((double)((Integer)e.getAttribute("weight")).intValue() / (double)maxWeight));
-			  c++;
-		 }
+		  for(Edge e:graph.getEdgeSet()){e.setAttribute("weight", new Double((double)((Integer)e.getAttribute("weight")).intValue() / (double)maxWeight));}
 		  		  
 		  c=0;
 		  while(graph.getEdgeIterator().hasNext()&&c<nEdges){
